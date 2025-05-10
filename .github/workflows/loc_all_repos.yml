@@ -45,7 +45,7 @@ jobs:
           total_lines=0
           for repo in $(cat repos.txt); do
             echo "Cloning $repo..."
-            git clone https://github.com/$repo.git
+            git clone https://$GH_TOKEN@github.com/$repo.git
             cd $(basename "$repo")
             # Run cloc on the repo
             lines=$(cloc . --exclude-dir=.github,.git --json | jq '.SUM.code')
