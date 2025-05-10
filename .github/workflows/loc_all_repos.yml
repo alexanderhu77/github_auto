@@ -22,19 +22,26 @@ jobs:
       - name: Install Git and cloc
         run: |
           sudo apt-get update
-          sudo apt-get install -y git cloc
+          sudo apt-get install -y git cloc jq
 
-      # Get a list of all repos you own
+      # Get list of all repos you own
       - name: Get list of repositories
         id: repos
         run: |
+          set -x  # Enable command echoing for debugging
           curl -H "Authorization: token $GH_TOKEN" \
                "https://api.github.com/user/repos?per_page=100" \
                | jq -r '.[].full_name' > repos.txt
+          
+      # Debug: Print the list of repositories
+      - name: Print repo list for debugging
+        run: |
+          cat repos.txt
 
       # Clone, count lines of code, and aggregate results
       - name: Count lines across all repos
         run: |
+          set -x  # Enable command echoing for debugging
           total_lines=0
           for repo in $(cat repos.txt); do
             echo "Cloning $repo..."
