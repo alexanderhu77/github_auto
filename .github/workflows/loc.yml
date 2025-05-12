@@ -2,7 +2,7 @@ name: Count Lines of Code
 
 on:
   schedule:
-    #- cron: '0 10 * * 1,4'  # every 30 minutes
+    #- cron: '0 10 * * 1,4'  # 10:00 AM every Monday and Thursday
   workflow_dispatch:
 
 jobs:
