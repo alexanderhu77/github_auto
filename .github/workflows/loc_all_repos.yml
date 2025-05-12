@@ -2,7 +2,7 @@ name: Count Lines of Code Across All Repos
 
 on:
   schedule:
-    - cron: '0 10 * * 1,4'  # every 30 minutes
+    # - cron: '0 10 * * 1,4'  # every 30 minutes
   workflow_dispatch:
 
 jobs:
